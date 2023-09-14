@@ -1,0 +1,72 @@
+<%- include('component/headerv2'); %>
+
+<div class="container">
+    <div class="container pt-5">  
+      <div class="containerbox1 p-5 rounded-1">
+        <h1 class="text-center">Create Your New Post</h1>
+        <div class="pt-5"></div>
+        <form class="row g-3" action="/home" method="post">
+          <div class="col-md-6">
+            <label for="title" class="form-label">Post Your Title</label>
+            <input class="form-control" id="title" name="title">
+          </div>
+          <div class="col-md-6">
+            <label for="tag" class="form-label">Post Your Topics</label>
+            <input class="form-control" id="tag" name="tag">
+          </div>
+          <div class="col-12">
+            <label for="image" class="form-label">Post Your Image URL</label>
+            <input class="form-control" id="image" name="image">
+          </div>
+          <div class="col-12">
+            <label for="description" class="form-label">Post Your Post Description</label>
+            <textarea type="text" class="form-control" id="description" name="description" rows="8"></textarea>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn w-100 btn-primary">Publish</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
+<style>
+.containerbox1{
+    border: 2px solid black;
+    background-color: rgba(246,241,241,1);
+}
+.imagebox {
+    max-width: 25%;
+    max-height: 25%;
+}
+body{
+      background-color: rgba(69,69,69,1);
+  }
+
+  .container {
+      margin-top: 50px;
+  }
+
+  .bg-light {
+      border-radius: 10px;
+  }
+
+  h1 {
+      font-size: 32px;
+      font-weight: bold;
+  }
+
+  label {
+      font-weight: bold;
+  }
+
+  .form-control {
+      border-radius: 8px;
+  }
+
+  .btn-primary {
+      border-radius: 8px;
+      font-weight: bold;
+  }
+</style

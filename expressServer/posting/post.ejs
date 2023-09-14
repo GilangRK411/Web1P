@@ -1,0 +1,186 @@
+<%- include('component/headerv2'); %>
+
+<% post %>
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="titlev-1 pt-2 pb-3"><%= post.title%></h1>
+                <p class="btn  rounded-1 btn-warning mb-0" style="align-items: center;"><%= post.tag %></p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center bg-dark borderbox1">
+                <img src="<%= post.image %>" class="img-fluid pt-3 imagebox" alt="Image" width="40%" height="40%">
+            </div>
+            <div class="col-12 bg-dark text-white text-center borderbox2">
+                <a class="btn btn-link titlev-2" style="font-size: large; color: #007bff;" href="/home/blogs/<%= post._id%>/edit">EDIT</a>
+            </div>                               
+        </div>
+    </div>
+    <div class="descriptiontxt row">
+        <div class="col-12">
+            <p class="lead paragraph" style="text-align: justify; font-size: 20px; width: 100%;"><%= post.description%></p>
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-6">
+            <div class="d-flex align-items-center">
+                <form method="POST" action="/home/blogs/<%= post._id %>?_method=DELETE" class="ml-1" onsubmit="return confirmDelete()">
+                    <button class="btn rounded-1 btn-danger" type="submit">Delete Post</button>
+                </form>
+            </div>
+            <script>
+                function confirmDelete() {
+                    return confirm("Are you sure you want to delete this post?");
+                }
+            </script>
+        </div>
+    </div>
+</div>
+
+<div class="container pt-5">
+    <div class="container">
+        <form action="/home/blogs/<%= post._id%>/comments" method="POST">
+            <div class="form-group">
+                <label for="comment" class="form-label">Leave a comment:</label>
+                <textarea class="form-control rounded-top thick-border" id="comment" rows="6" name="comment" placeholder="Write your comment here"></textarea>
+            </div>
+            <button class="btn rounded-bottom btn-primary w-100 submitbox">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="container pt-5">
+    <div class="container">
+        <div class="row">
+            <% const midIndex = Math.floor(post.comment.length / 2); %>
+            <% post.comment.reverse().forEach((comment, index) => { %>
+            <div class="col-12">
+                <div class="card <%= index === midIndex ? 'thick-border' : 'thick-border' %>">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong><%= comment.author %></strong></h5>
+                        <p class="card-text"><%= comment.comment %></p>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+<style>
+.rounded-top {
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+a.btn.btn-link.titlev-1:hover {
+    color: white;
+    text-decoration: none;
+}
+.borderbox1{
+    border-radius: 5px 5px 0 0; 
+}
+.borderbox2{
+    border-radius: 0 0 5px 5px; 
+}
+.btn-link {
+        transition: transform 0.3s;
+}
+.btn-link:hover {
+        transform: scale(1.1);
+}
+.rounded-bottom{
+    border-radius: 0 0 0.25rem 0.25rem ;
+}
+.paragraph {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+.descriptiontxt{
+    font-family: Montserrat;
+}
+.titlev-1{
+    font-family: Montserrat;
+    font-weight: bold;
+}
+.titlev-2{
+    font-family: Montserrat;
+    font-weight: bold;
+    text-decoration: none;
+}
+.container {
+  padding-top: 3rem;
+}
+.titlev-1 {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  text-decoration: none;
+}
+.descriptiontxt {
+  margin-top: 2rem;
+}
+.btn {
+  border-radius: 0.25rem;
+}
+.btn-warning {
+  background-color: rgba(185,185,185,1);
+  color: #ffffff;
+  border:rgba(185,185,185,1);
+}
+.btn-danger {
+  background-color: rgba(185,185,185,1);
+  color: #fff;
+  border: rgba(185,185,185,1);
+}
+.form-control {
+  border-radius: 0.25rem;
+}
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+.rounded-top {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+.rounded-bottom {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+.card {
+    border-bottom: 2px solid #000000;
+    border-left: 2px solid #000000;
+    border-right: 2px solid #000000;
+    border-top: 2px solid #000000;
+    border-radius: 0; 
+}
+.thick-border {
+    border: 2px solid #343a40;
+}
+.imagebox {
+  transition: transform 0.3s ease;
+}
+
+.imagebox:hover {
+  transform: scale(1.005);
+}
+.submitbox {
+  transition: transform 0.3s ease;
+}
+.submitbox:hover {
+  transform: scale(1.02);
+}
+</style>
+
+
+
+
+
+
+
+
+
